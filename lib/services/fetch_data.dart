@@ -23,7 +23,9 @@ class WeatherService {
       {String? locationName,
       BuildContext? context,
       bool isOnlyView = false,
-      bool isBackground = false}) async {
+      bool isBackground = false,
+      http.Client? client}) async {
+    client ??= http.Client();
     final timezone = tzmap.latLngToTimezoneString(lat, lon);
     final key = locationName ?? 'loc_${lat}_${lon}';
     final box = await _openBox();
@@ -66,10 +68,10 @@ class WeatherService {
     // Prepare list of HTTP requests
     try {
       final requests = <Future<http.Response>>[
-        http.get(uri).timeout(const Duration(seconds: 15)),
-        http.get(airQualityUri).timeout(const Duration(seconds: 15)),
+        client.get(uri).timeout(const Duration(seconds: 15)),
+        client.get(airQualityUri).timeout(const Duration(seconds: 15)),
         if (astronomyUri != null)
-          http.get(astronomyUri).timeout(const Duration(seconds: 15)),
+          client.get(astronomyUri).timeout(const Duration(seconds: 15)),
       ];
 
       final responses = await Future.wait(requests);

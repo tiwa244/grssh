@@ -62,7 +62,6 @@ flutter:
     - assets/foreground-animations/
     - assets/translations/
     - assets/froggie/
-    - assets/.env
   fonts:
     - family: DefaultFont
       fonts:
