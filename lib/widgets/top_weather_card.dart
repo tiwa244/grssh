@@ -104,6 +104,13 @@ class _WeatherTopCardState extends State<WeatherTopCard> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Text(
+                      "now".tr(),
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.secondary,
+                        fontSize: 18,
+                      ),
+                    ),
                     Row(
                       children: [
                         PreferencesHelper.getBool("useTempAnimation") == false
@@ -133,7 +140,7 @@ class _WeatherTopCardState extends State<WeatherTopCard> {
                         Row(
                           children: [
                             Icon(Icons.arrow_upward,
-                                size: 20,
+                                size: 16,
                                 color: Theme.of(context)
                                     .colorScheme
                                     .onSurfaceVariant),
@@ -144,16 +151,15 @@ class _WeatherTopCardState extends State<WeatherTopCard> {
                                   color: Theme.of(context)
                                       .colorScheme
                                       .onSurfaceVariant,
-                                  fontSize: 18),
+                                  fontSize: 16),
                             )
                           ],
                         ),
-                        SizedBox(width: 10),
                         Row(
                           children: [
                             Icon(
                               Icons.arrow_downward,
-                              size: 20,
+                              size: 16,
                               color: Theme.of(context)
                                   .colorScheme
                                   .onSurfaceVariant,
@@ -164,18 +170,11 @@ class _WeatherTopCardState extends State<WeatherTopCard> {
                                     color: Theme.of(context)
                                         .colorScheme
                                         .onSurfaceVariant,
-                                    fontSize: 18))
+                                    fontSize: 16))
                           ],
                         )
                       ],
-                    ),
-                    Text(
-                      "${'feels_like'.tr()} ${widget.currentFeelsLike == 0000 ? '--' : '\u200E$convertedfeelsLikeTemp°'}",
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        fontSize: 15,
-                      ),
-                    ),
+                    )
                   ],
                 ),
                 Column(
@@ -184,20 +183,55 @@ class _WeatherTopCardState extends State<WeatherTopCard> {
                     SizedBox(
                       height: 50,
                       width: 150,
-                      child: Text(
-                        WeatherConditionMapper.getConditionLabel(
-                          widget.currentWeatherIconCode,
-                          widget.currentisDay,
-                        ).tr(),
-                        key: _labelKey,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.onSurface,
-                          fontSize: 18,
-                        ),
-                        softWrap: true,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        textAlign: TextAlign.end,
+                      child: Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          PositionedDirectional(
+                            top: 0,
+                            end: 0,
+                            child: ConstrainedBox(
+                              constraints: BoxConstraints(
+                                maxWidth: 150,
+                              ),
+                              child: Text(
+                                WeatherConditionMapper.getConditionLabel(
+                                  widget.currentWeatherIconCode,
+                                  widget.currentisDay,
+                                ).tr(),
+                                key: _labelKey,
+                                style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.onSurface,
+                                  fontSize: 18,
+                                ),
+                                softWrap: true,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                textAlign: TextAlign.end,
+                              ),
+                            ),
+                          ),
+                          if (_labelHeight > 0)
+                            PositionedDirectional(
+                              top: _labelHeight,
+                              end: 0,
+                              child: ConstrainedBox(
+                                constraints: BoxConstraints(
+                                  maxWidth: 150,
+                                ),
+                                child: Text(
+                                  "${'feels_like'.tr()} ${widget.currentFeelsLike == 0000 ? '--' : '\u200E$convertedfeelsLikeTemp°'} ",
+                                  style: TextStyle(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant,
+                                    fontSize: 15,
+                                  ),
+                                  textAlign: TextAlign.end,
+                                ),
+                              ),
+                            ),
+                        ],
                       ),
                     ),
                     const SizedBox(

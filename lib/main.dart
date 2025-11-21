@@ -408,37 +408,8 @@ ColorScheme customDarkScheme = ColorScheme(
   surfaceContainerLowest: Color(paletteStartScreen.neutral.get(4)),
 );
 
-class LocationPromptScreen extends StatefulWidget {
+class LocationPromptScreen extends StatelessWidget {
   const LocationPromptScreen({super.key});
-
-  @override
-  State<LocationPromptScreen> createState() => _LocationPromptScreenState();
-}
-
-class _LocationPromptScreenState extends State<LocationPromptScreen>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _animation;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 500),
-    );
-    _animation = CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeIn,
-    );
-    _controller.forward();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -466,10 +437,8 @@ class _LocationPromptScreenState extends State<LocationPromptScreen>
       }
     }
 
-    return FadeTransition(
-      opacity: _animation,
-      child: Scaffold(
-        backgroundColor: customDarkScheme.surfaceContainerLow,
+    return Scaffold(
+      backgroundColor: customDarkScheme.surfaceContainerLow,
       appBar: AppBar(
         toolbarHeight: 130,
         backgroundColor: customDarkScheme.tertiaryContainer,

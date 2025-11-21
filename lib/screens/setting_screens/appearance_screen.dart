@@ -22,7 +22,6 @@ class _AppearanceScreenState extends State<AppearanceScreen> {
   bool _showTile = PreferencesHelper.getBool("usingCustomSeed") ?? false;
   bool _useCustomTile =
       PreferencesHelper.getBool("DynamicColors") == true ? false : true;
-  bool _foggyLayout = PreferencesHelper.getBool("foggyLayout") ?? false;
   @override
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context);
@@ -441,26 +440,6 @@ class _AppearanceScreenState extends State<AppearanceScreen> {
                       });
                     },
                   ),
-                  SettingSwitchTile(
-                    icon: Icon(Symbols.blur_on, fill: 1, weight: 500),
-                    title: Text('Foggy Layout'),
-                    toggled: _foggyLayout,
-                    onChanged: (value) {
-                      setState(() {
-                        _foggyLayout = value;
-                        PreferencesHelper.setBool("foggyLayout", value);
-                      });
-                    },
-                  ),
-                  if (!_foggyLayout)
-                    SettingActionTile(
-                      icon: Icon(Symbols.image, fill: 1, weight: 500),
-                      title: Text('Background Images'),
-                      trailing: Icon(Icons.chevron_right),
-                      onTap: () {
-                        // TODO: Implement background image selection
-                      },
-                    ),
                   SettingActionTile(
                     icon: Icon(Symbols.view_agenda, fill: 1, weight: 500),
                     title: Text('edit_layout'.tr()),

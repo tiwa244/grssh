@@ -57,7 +57,6 @@ import '../notifiers/unit_settings_notifier.dart';
 import '../services/fetch_data.dart';
 
 // App widgets
-import '../widgets/fade_in.dart';
 import '../widgets/current_conditions_card.dart';
 import '../widgets/daily_card.dart';
 import '../widgets/hourly_card.dart';
@@ -739,18 +738,14 @@ class _WeatherHomeState extends State<WeatherHome> {
           ],
         );
       },
-      child: AnimatedOpacity(
-        opacity: _isAppFullyLoaded ? 1.0 : 0.0,
-        duration: const Duration(milliseconds: 500),
-        child: SingleChildScrollView(
-          controller: _scrollController,
-          physics: const AlwaysScrollableScrollPhysics(),
-          child: Column(
-            children: [
-              Padding(padding: EdgeInsets.only(top: padding.top + 10)),
-              _buildWeatherContent(),
-            ],
-          ),
+      child: SingleChildScrollView(
+        controller: _scrollController,
+        physics: const AlwaysScrollableScrollPhysics(),
+        child: Column(
+          children: [
+            Padding(padding: EdgeInsets.only(top: padding.top + 10)),
+            _buildWeatherContent(),
+          ],
         ),
       ),
     );
@@ -1560,10 +1555,8 @@ class _WeatherHomeState extends State<WeatherHome> {
                   const SizedBox(
                     height: 10,
                   ),
-                  FadeIn(
-                    delay: const Duration(milliseconds: 100),
-                    child: WeatherTopCard(
-                      currentTemp: current['temperature_2m'].toDouble(),
+                  WeatherTopCard(
+                    currentTemp: current['temperature_2m'].toDouble(),
                     currentFeelsLike:
                         current['apparent_temperature'].toDouble(),
                     currentMaxTemp: weather['daily']?['temperature_2m_max']?[0]
@@ -1575,11 +1568,8 @@ class _WeatherHomeState extends State<WeatherHome> {
                     currentWeatherIconCode: current['weather_code'],
                     currentisDay: current['is_day'],
                     currentLastUpdated: formattedTime,
-                  )),
-                  FadeIn(
-                    delay: const Duration(milliseconds: 200),
-                    child: WeatherFrogIconWidget(iconUrl: _iconUrlFroggy),
                   ),
+                  WeatherFrogIconWidget(iconUrl: _iconUrlFroggy),
                   const SizedBox(height: 14),
                   SizedBox(
                     width: isFoldableLayout(context) ? 500 : null,
@@ -1618,11 +1608,8 @@ class _WeatherHomeState extends State<WeatherHome> {
                           final currentBlock = visibleBlocks[i];
 
                           children.add(
-                            FadeIn(
-                              delay: Duration(milliseconds: 300 + (i * 100)),
-                              child: RepaintBoundary(
-                                child: buildLayoutBlock(currentBlock.type),
-                              ),
+                            RepaintBoundary(
+                              child: buildLayoutBlock(currentBlock.type),
                             ),
                           );
 
