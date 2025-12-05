@@ -1,0 +1,6 @@
+id=monet2-theming-engine
+name=Monet2 Theming Engine
+version=v1.0
+versionCode=1
+author=Jules
+description=An advanced theming engine that extracts colors from your wallpaper.

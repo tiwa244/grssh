@@ -1,0 +1,11 @@
+#!/sbin/sh
+#
+# Magisk Module Installer Script
+#
+SKIPUNZIP=1
+
+# Unzip the module files
+unzip -o "$ZIPFILE" -x 'META-INF/*' -d $MODPATH >&2
+
+# Set permissions
+set_perm_recursive $MODPATH 0 0 0755 0644
