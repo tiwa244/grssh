@@ -1,85 +1,24 @@
-name: weather_master_app
-description: "A new Flutter project."
+name: monet2_configuration
+description: "A configuration app for the Monet2 theming engine."
 publish_to: "none"
-version: 2.6.5+26
+version: 1.0.0+1
 
 environment:
   sdk: ">=3.0.6 <4.0.0"
-  flutter: "3.38.1"
 
 dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
-  http: ^1.4.0
-  material_color_utilities: ^0.11.1
-  animations: ^2.0.11
-  flutter_svg: ^2.0.7
-  lottie: ^3.1.2
-  lat_lng_to_timezone: ^0.2.0
   shared_preferences: ^2.5.3
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
-  path_provider: ^2.1.3
   provider: ^6.1.2
-  connectivity_plus: ^7.0.0
-  restart_app: ^1.3.2
-  intl: ^0.20.2
   material_symbols_icons: ^4.2815.1
-  flutter_compass: ^0.8.1
-  dynamic_color: ^1.7.0
-  xml: ^6.5.0
-  fl_chart: ^1.1.1
-  easy_localization: ^3.0.7+1
-  url_launcher: ^6.3.1
-  reorderable_grid_view: ^2.2.8
-  custom_refresh_indicator: ^4.0.1
-  flutter_markdown: ^0.7.7+1
-  solar_calculator: ^1.0.3
-  file_picker: ^10.2.0
-  flutter_dotenv: ^6.0.0
-  home_widget: ^0.8.0
-  permission_handler: ^12.0.1
-  moon_phase: ^1.0.2+9
-  flex_color_picker: ^3.7.1
-  flutter_displaymode: ^0.7.0
-  settings_tiles:
-    path: ./settings_tiles_custom
-  expressive_loading_indicator:
-    path: ./expressive_loading_indicator_modified
+  settings_tiles: ^3.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mockito: ^5.4.4
-  build_runner: ^2.4.9
   flutter_lints: ^6.0.0
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/weather-icons/
-    - assets/foreground-animations/
-    - assets/translations/
-    - assets/froggie/
-  fonts:
-    - family: DefaultFont
-      fonts:
-        - asset: assets/fonts/nato-Medium.ttf
-          weight: 400
-        - asset: assets/fonts/nato-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/nato-SemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/nato-Bold.ttf
-          weight: 700
-    - family: FlexFontEn
-      fonts:
-        - asset: assets/fonts/flex-Regular.ttf
-          weight: 400
-        - asset: assets/fonts/flex-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/flex-Medium.ttf
-          weight: 600
-        - asset: assets/fonts/flex-Bold.ttf
-          weight: 700
